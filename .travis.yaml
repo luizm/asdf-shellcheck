@@ -1,8 +1,8 @@
 language: c
-script: asdf plugin-test kubectl https://github.com/luizm/asdf-shellcheck.git
+script: asdf plugin-test shellcheck https://github.com/luizm/asdf-shellcheck.git
 before_script:
   - git clone https://github.com/asdf-vm/asdf.git
-  - . asdf/asdf.sh
+  - source asdf/asdf.sh
 os:
   - linux
   - osx
