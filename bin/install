@@ -1,36 +1,45 @@
 #!/usr/bin/env bash
-
-set -e
-set -o pipefail
+set -eo pipefail
 
 ASDF_INSTALL_TYPE=${ASDF_INSTALL_TYPE:-version  }
-TMPDIR=${TMPDIR:-/tmp}
-[ -n "$ASDF_INSTALL_VERSION" ] || (>&2 echo 'Missing ASDF_INSTALL_VERSION' && exit 1)
-[ -n "$ASDF_INSTALL_PATH" ] || (>&2 echo 'Missing ASDF_INSTALL_PATH' && exit 1)
 
-install_kubectl() {
-  local install_type=$1
-  local version=$2
-  local install_path=$3
-  local bin_install_path="$install_path/bin"
-  local download_url="$(get_download_url $version)"
-
-  mkdir -p "${bin_install_path}"
-
-  local bin_path="${bin_install_path}/kubectl"
-  echo "Downloading kubectl from ${download_url}"
-  curl -s "$download_url" -o "$bin_path"
-  chmod +x $bin_path
+test -n "$ASDF_INSTALL_VERSION" || {
+	echo 'Missing ASDF_INSTALL_VERSION'
+	exit 1
 }
 
-get_arch() {
-  uname | tr '[:upper:]' '[:lower:]'
+test -n "$ASDF_INSTALL_PATH" || {
+	echo 'Missing ASDF_INSTALL_PATH'
+	exit 1
 }
 
-get_download_url() {
-  local version="$1"
-  local platform="$(get_arch)"
-  echo "https://storage.googleapis.com/kubernetes-release/release/v${version}/bin/${platform}/amd64/kubectl"
+_get_arch() {
+	uname | tr '[:upper:]' '[:lower:]'
 }
 
-install_kubectl $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
+_get_download_url() {
+	local -r version="$1"
+	local -r platform="$2"
+
+	echo "https://shellcheck.storage.googleapis.com/shellcheck-v${version}.${platform}-x86_64"
+}
+
+install() {
+	local -r install_type=$1
+	local -r version=$2
+	local -r install_path=$3
+	local -r tar_install_path="$install_path/shellcheck-$version.tgz"
+	local -r bin_install_path="$install_path/bin"
+	local -r platform="$(_get_arch)"
+	local -r download_url="$(_get_download_url "$version" "$platform")"
+	local -r bin_path="$bin_install_path/shellcheck"
+
+	mkdir -p "$bin_install_path"
+	echo "Downloading shellcheck from $download_url"
+	curl -Ls "$download_url" -o "$tar_install_path"
+	tar -xf "$tar_install_path"
+	cp "$install_path/shellcheck-stable/shellcheck" "$bin_path"
+	chmod +x "$bin_path"
+}
+
+install "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
