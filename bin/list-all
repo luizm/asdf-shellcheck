@@ -2,9 +2,9 @@
 
 releases_url="https://shellcheck.storage.googleapis.com"
 
-list_packages(){
-	curl -s "$releases_url" | 
-		sed "s/<Key>\|<\/Key/ /g" | 
+list_packages() {
+	curl -s "$releases_url" |
+		sed "s/<Key>\|<\/Key/ /g" |
 		grep -Eo "shellcheck-v[0-9]\.[0-9]\.[0-9]\.(linux|darwin)\.x86_64.tar.xz"
 }
 
