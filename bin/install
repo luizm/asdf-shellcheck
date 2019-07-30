@@ -38,7 +38,7 @@ install() {
 	echo "Downloading shellcheck from $download_url"
 	curl -Ls "$download_url" -o "$tar_install_path"
 	tar -xf "$tar_install_path"
-	cp "$install_path/shellcheck-stable/shellcheck" "$bin_path"
+	cp "$install_path/shellcheck-v$version/shellcheck" "$bin_path"
 	chmod +x "$bin_path"
 }
 
