@@ -28,7 +28,7 @@ install() {
 	local -r install_type=$1
 	local -r version=$2
 	local -r install_path=$3
-	local -r tar_install_path="$install_path/shellcheck-$version.tgz"
+	local -r tar_install_path="$install_path/shellcheck-v$version.tgz"
 	local -r bin_install_path="$install_path/bin"
 	local -r platform="$(_get_arch)"
 	local -r download_url="$(_get_download_url "$version" "$platform")"
@@ -38,7 +38,8 @@ install() {
 	echo "Downloading shellcheck from $download_url"
 	curl -Ls "$download_url" -o "$tar_install_path"
 	tar -xf "$tar_install_path"
-	cp "$install_path/shellcheck-v$version/shellcheck" "$bin_path"
+	cp "shellcheck-v$version/shellcheck" "$bin_path"
+	rm -rf "shellcheck-v$version"
 	chmod +x "$bin_path"
 }
 
