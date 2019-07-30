@@ -21,7 +21,7 @@ _get_download_url() {
 	local -r version="$1"
 	local -r platform="$2"
 
-	echo "https://shellcheck.storage.googleapis.com/shellcheck-v$version.$platform-x86_64.tar.xz"
+	echo "https://shellcheck.storage.googleapis.com/shellcheck-v$version.$platform.x86_64.tar.xz"
 }
 
 install() {
