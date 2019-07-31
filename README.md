@@ -7,7 +7,7 @@
 ## Install
 
 ```
-asdf plugin-add shellcheck https://github.com/luizm/asdf-shellcheck.git
+asdf plugin-add shellcheck
 ```
 
 ## Use
