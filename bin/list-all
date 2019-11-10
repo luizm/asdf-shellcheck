@@ -9,4 +9,4 @@ list_packages() {
 		grep -Eio "shellcheck-v[0-9]\.[0-9]\.[0-9]\.$os\.x86_64.tar.xz"
 }
 
-list_packages | grep -oE "[0-9]\.[0-9]\.[0-9]" | uniq
+list_packages | grep -oE "[0-9]\.[0-9]\.[0-9]" | uniq | tr "\n" " "
