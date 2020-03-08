@@ -4,12 +4,16 @@
 
 [shellcheck](https://github.com/mvdan/sh) plugin for the [asdf](https://github.com/asdf-vm/asdf) version manager.
 
-## Install
+For more informations about the [asdf usage](https://asdf-vm.com/#/core-commands).
+
+## Add plugin
 
 ```
 asdf plugin-add shellcheck
 ```
 
-## Use
+## Install 
 
-Check out the [asdf](https://github.com/asdf-vm/asdf) readme for instructions.
+```
+asdf install shellcheck 0.7.0
+```
