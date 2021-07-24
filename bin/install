@@ -36,8 +36,8 @@ _get_download_url() {
 }
 
 install() {
-	local -r version=$2
-	local -r install_path=$3
+	local -r version=$1
+	local -r install_path=$2
 	local -r tar_install_path="$install_path/shellcheck-v$version.tgz"
 	local -r bin_install_path="$install_path/bin"
 	local -r platform="$(_get_platform)"
