@@ -44,7 +44,7 @@ install() {
 	local arch; arch="$(_get_arch)"
 	# Currently there is no darwin/arm support: https://github.com/koalaman/shellcheck/releases
 	# If/when it is added, remove the folling line and make arch a read-only variable.
-	if [[ "$platform" == "darwin" ]]; then arch="x86_64"; fi
+	test "$platform" == "darwin" && arch="x86_64"
 	local -r download_url="$(_get_download_url "$version" "$platform" "$arch")"
 	local -r bin_path="$bin_install_path/shellcheck"
 
