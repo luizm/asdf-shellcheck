@@ -49,11 +49,11 @@ install() {
 
 	local -r download_url="$(_get_download_url "${version}" "${platform}" "${arch}")"
 
-	mkdir -pv "${bin_install_path}"
+	mkdir -p "${bin_install_path}"
 
 	echo "Downloading shellcheck from ${download_url} to ${bin_install_path}"
 	# curl to tar, without files on disk
-	( curl -Ls "${download_url}" | tar -xJv --strip-components=1 -C "${bin_install_path}" "shellcheck-v${version}/shellcheck" )
+	curl -Ls "${download_url}" | tar -xJv --strip-components=1 -C "${bin_install_path}" "shellcheck-v${version}/shellcheck"
 	chmod +x "${bin_path}"
 }
 
