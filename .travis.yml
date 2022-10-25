@@ -1,7 +1,0 @@
-language: c
-script: asdf plugin-test shellcheck https://github.com/luizm/asdf-shellcheck.git
-before_script:
-  - git clone https://github.com/asdf-vm/asdf.git
-  - source asdf/asdf.sh
-os:
-  - linux
