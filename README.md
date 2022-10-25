@@ -1,6 +1,7 @@
 # asdf-shellcheck
 
-[![Build Status](https://github.com/luizm/asdf-shellcheck/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/luizm/asdf-shellcheck/actions/workflows/build.yml?query=branch%3Amaster)
+![Build Status](https://github.com/luizm/asdf-shellcheck/actions/workflows/build.yml/badge.svg)
+
 
 [shellcheck](https://github.com/koalaman/shellcheck) plugin for the [asdf](https://github.com/asdf-vm/asdf) version manager.
 
