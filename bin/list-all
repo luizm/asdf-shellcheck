@@ -2,8 +2,8 @@
 
 releases_url="https://api.github.com/repos/koalaman/shellcheck/releases"
 
-if [ -n "$OAUTH_TOKEN" ]; then
-	cmd="curl -s -H 'Authorization: token $OAUTH_TOKEN' $releases_url"
+if [ -n "$GITHUB_API_TOKEN" ]; then
+	cmd="curl -s -H 'Authorization: token $GITHUB_API_TOKEN' $releases_url"
 else
 	cmd="curl -s $releases_url"
 fi
