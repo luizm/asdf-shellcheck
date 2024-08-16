@@ -43,9 +43,14 @@ install() {
 
 	local -r platform="$(_get_platform)"
 	local arch; arch="$(_get_arch)"
-	# Currently there is no darwin/arm support: https://github.com/koalaman/shellcheck/releases
-	# If/when it is added, remove the folling line and make arch a read-only variable.
-	test "$platform" == "darwin" && arch="x86_64"
+	# Shellcheck supports Darwin/ARM only starting from v0.10.0.
+	# If the requested version is lower than v0.10.0, then fall back to the x86_64 version.
+	local -r version_parts=(${version//./ })
+	if [ "${version_parts[0]}" -eq 0 ] && [ "${version_parts[1]}" -lt 10 ]; then
+		test "$platform" == "darwin" && arch="x86_64"
+	else
+		test "$platform" == "darwin" && arch="aarch64"
+	fi
 
 	local -r download_url="$(_get_download_url "${version}" "${platform}" "${arch}")"
 
