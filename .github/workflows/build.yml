@@ -18,7 +18,8 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - macos-latest
+          - macos-14 # aarch64
+          - macos-13 # x86_64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: asdf-vm/actions/plugin-test@v2
