@@ -4,3 +4,5 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    ignore:
+      - dependency-name: 'asdf-vm/actions' # v4 treats asdf-vm v0.16.0+ as the primary version
