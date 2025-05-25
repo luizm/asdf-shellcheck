@@ -25,3 +25,4 @@ jobs:
       - uses: asdf-vm/actions/plugin-test@v3
         with:
           command: 'shellcheck --version'
+          asdf_branch: 'v0.15.0' # v0.16.0 introduced breaking changes
